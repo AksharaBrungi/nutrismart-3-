@@ -266,7 +266,7 @@ async function startServer() {
       appType: "spa",
     });
     app.use(vite.middlewares);
-  }} else {
+  }else {
   app.use(express.static(distPath));
 
   app.use((req, res) => {
