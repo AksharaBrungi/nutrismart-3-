@@ -17,7 +17,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "nutrismart-secret-key";
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
 
   app.use(cors());
   app.use(express.json());
@@ -256,7 +256,7 @@ async function startServer() {
     }
   });
 
-  // Vite middleware for development or static serving for production
+    // Vite middleware for development or static serving for production
   const isProd = process.env.NODE_ENV === "production";
   const distPath = path.join(__dirname, "dist");
 
@@ -266,15 +266,16 @@ async function startServer() {
       appType: "spa",
     });
     app.use(vite.middlewares);
-  } else {
-    app.use(express.static(distPath));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
-    });
-  }
+  }} else {
+  app.use(express.static(distPath));
+
+  app.use((req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+  });
+}
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`🚀 NutriSmart server running on port ${PORT}`);
   });
 }
 
