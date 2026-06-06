@@ -1,0 +1,7 @@
+{
+  "name": "NutriSmart",
+  "description": "A high-performance food nutrition analyzer using Gemini AI for object detection and detailed macro-nutritional breakdown. Track your daily targets and get smart healthy alternatives.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
